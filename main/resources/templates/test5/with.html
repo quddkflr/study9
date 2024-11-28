@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<!-- 변수 정의 합니다. -->
+		  <ul th:with="num=${listcount-(page-1)*limit}">
+		  	  <li th:each="i : ${#numbers.sequence(1, num)}">
+		  	  	[[${i}]]
+		  	  </li>
+		  </ul>
+	</div>
+</body>
+</html>

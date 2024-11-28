@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- 
+1. 서버 사이드 자바 템플릿 엔진은 웹 애플리케이션의 서버 측에서 동적으로 HTML을 생성하는 데 사용되는 도구나 라이브러리입니다.
+   이러한 엔진은 일반적으로 템플릿 파일에 데이터를 삽입하고 그 결과물을 클라이언트에 제공하여 동적인 웹 페이지를 생성합니다.
+ 
+2. 타임리프(Thymeleaf)는 서버 사이드 자바 템플릿 엔진으로, 주로 웹 애플리케이션의 사용자 인터페이스를 구축하기 위해 사용됩니다.
+   HTML, XML, JavaScript, CSS 등의 웹 문서를 생성하는 데 사용됩니다.
+   타임리프는 자바 및 자바스크립트 코드를 통합할 수 있는 강력한 기능을 제공하며, 특히 스프링 부트와의 통합이 강력한 장점 중 하나입니다.
+   
+* 타임리프를 사용하기 위해서는 html 태그에 다음과 같이 추가해 줍니다.
+ -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<table class="table table-striped table-bordered">
+			<tr>
+				<td>id</td>
+				<td>password</td>
+			</tr>
+			<!-- 
+				Thymeleaf에서 디렉티브는 템플릿 엔진에게 특정 동작을 수행하도록 지시하는 지시문이나 명령어입니다.
+				 이 디렉티브는 HTML 태그의 속성 형식으로 작성되며, th: 접두사로 시작합니다.
+				th:each 디렉티브를 통해 반복을 처리합니다.
+			  	 사용예) th:each="변수 : ${list}"
+			  -->
+			 <tr th:each="member : ${list}">
+			 	<td>[[${member.id}]]</td>
+			 	<td>[[${member.password}]]</td>
+			 </tr>
+		</table>
+	</div>
+</body>
+</html>

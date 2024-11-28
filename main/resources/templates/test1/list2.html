@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- 
+1. 서버 사이드 자바 템플릿 엔진은 웹 애플리케이션의 서버 측에서 동적으로 HTML을 생성하는 데 사용되는 도구나 라이브러리입니다.
+   이러한 엔진은 일반적으로 템플릿 파일에 데이터를 삽입하고 그 결과물을 클라이언트에 제공하여 동적인 웹 페이지를 생성합니다.
+ 
+2. 타임리프(Thymeleaf)는 서버 사이드 자바 템플릿 엔진으로, 주로 웹 애플리케이션의 사용자 인터페이스를 구축하기 위해 사용됩니다.
+   HTML, XML, JavaScript, CSS 등의 웹 문서를 생성하는 데 사용됩니다.
+   타임리프는 자바 및 자바스크립트 코드를 통합할 수 있는 강력한 기능을 제공하며, 특히 스프링 부트와의 통합이 강력한 장점 중 하나입니다.
+   
+* 타임리프를 사용하기 위해서는 html 태그에 다음과 같이 추가해 줍니다.
+ -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<style type="text/css">
+ .target{
+ 	color:green;
+ 	font-weight:bold;
+ }
+ caption{
+ 	caption-side: top;
+ }
+ 
+</style>
+</head>
+<body>
+	<div class="container">
+		<table class="table table-striped table-bordered">
+			<caption>모든 요소 출력</caption>
+			 <tr>
+			 	<td>순서</td>
+			 	<td>id</td>
+			 	<td>password</td>
+			 </tr>
+			 <tr th:each="member, state : ${list}">
+			 	<td>[[${state.count}]]</td>
+			 	<td>[[${member.id}]]</td>
+			 	<td>[[${member.password}]]</td>
+			 </tr>
+		</table>
+	</div>
+
+	<div class="container">
+		<table class="table table-striped table-bordered">
+			<caption>특정 조건에 맞는 요소 출력</caption>
+			 <tr>
+			 	<td>순서</td>
+			 	<td>id</td>
+			 	<td>password</td>
+			 </tr>
+			 <tr th:each="member, state : ${list}"
+			 	 th:if="${member.id == 'user1'}">
+			 	<td>[[${state.count}]]</td>
+			 	<td>[[${member.id}]]</td>
+			 	<td>[[${member.password}]]</td>
+			 </tr>
+		</table>
+	</div>
+	
+	<div class="container">
+		<table class="table table-striped table-bordered">
+			<caption>state 속성들</caption>
+			 <tr>
+			 	<td>state.index:현재 반복되고 있는 요소의 인덱스(0부터 시작)</td>
+			 	<td>state.count:현재까지의 반복 횟수(1부터 시작)</td>
+			 	<td>state.size:반복되고 있는 컬렉션의 크기</td>
+			 	<td>state.current:현재 반복되 있는 요소</td>
+			 </tr>
+			 <tr th:each="member, state : ${list}">
+			 	<td>[[${state.index}]]</td>
+			 	<td>[[${state.count}]]</td>
+			 	<td>[[${state.size}]]</td>
+			 	<td>[[${state.current}]]</td>
+			 </tr>
+		</table>
+	</div>
+	
+	<div class="container">
+		<table class="table table-striped table-bordered">
+			<caption>모든 요소 출력 및 특정 조건 class 속성 주기</caption>
+			 <tr>
+			 	<td>순서</td>
+			 	<td>id</td>
+			 	<td>password</td>
+			 </tr>
+			 <tr th:each="member, state : ${list}"
+			 	 th:class="${state.index % 3 == 1} ? 'target'">
+			 	<td>[[${state.count}]]</td>
+			 	<td>[[${member.id}]]</td>
+			 	<td>[[${member.password}]]</td>
+			 </tr>
+		</table>
+	</div>
+</body>
+</html>

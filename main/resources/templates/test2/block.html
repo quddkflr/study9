@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<table class="table table-striped table-bordered">
+			 <tr>
+			 	<td>id</td>
+			 	<td>password</td>
+			 </tr>
+			 
+			 <!-- Thymeleaf에서 사용되는 논리적인 요소로 화면에 출력되지 않는 요소입니다.
+			 	  th:each 디렉티브를 통해 반복을 처리합니다.
+			 	  사용예) th:each="변수 : ${list}" -->
+			 <th:block th:each="member : ${list}">
+			  	<tr>
+			 		<td>[[${member.id}]]</td>
+			 		<td>[[${member.password}]]</td>
+			 	</tr>
+			 </th:block>
+		</table>
+	</div>
+</body>
+</html>

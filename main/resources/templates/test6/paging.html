@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<style>
+.gray {
+	color: gray
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="center-block mt-5">
+			<ul class="pagination justify-content-center">
+					<li class="page-item" th:if="${page <= 1}">
+						<a class="page-link gray">이전&nbsp;</a>
+					</li>
+					<li class="page-item" th:if="${page > 1}">
+						<a th:href="@{'paging?page=' + ${page-1}}" class="page-link">이전&nbsp;</a>
+					</li>
+					
+					<li th:class="${a == page} ? 'page-item active' : 'page-item'"
+						th:each="a : ${#numbers.sequence(startpage, endpage)}">
+						<a th:href="${a == page} ? '' : 'paging?page=' + ${a}"
+						   class="page-link">
+							<span th:text="${a}"></span>   
+						</a>
+
+					<li class="page-item" th:if="${page >= maxpage}">
+						<a class="page-link gray">&nbsp;다음</a>
+					</li>
+					<li class="page-item" th:if="${page < maxpage}">
+						<a th:href="@{'paging?page=' + ${page+1}}" class="page-link">&nbsp;다음</a>
+					</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
